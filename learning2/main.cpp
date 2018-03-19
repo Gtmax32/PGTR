@@ -37,14 +37,6 @@ const GLchar* vertexShaderSource = "#version 330 core\n"
     "   ourColor = aColor;\n"
     "}\0";
 
-/*const GLchar* fragmentShaderSource = "#version 330 core\n"
-    "out vec4 color;\n"
-	"in vec4 vertexColor;\n" //Dichiaro una variabile avente lo stesso nome e tipo di quella di output dichiarata nel VS, in modo da passare il valore tra gli shaders.
-    "void main()\n"
-    "{\n"
-    "color = vertexColor;\n"
-    "}\n\0";*/
-
 const GLchar* fragmentShaderSource = "#version 330 core\n"
     "out vec4 FragColor;\n"
     "in vec3 ourColor;\n"
@@ -104,54 +96,6 @@ int main(){
 	//SETTO LA FUNZIONE DI CALLBACK CHE SI OCCUPA DI GESTIRE LE INTERAZIONI DELL'UTENTE
 	
 	glfwSetFramebufferSizeCallback(window,framebuffer_size_callback);
-	
-	/*/CREO IL VERTEX SHADER
-	GLuint vertexShader;
-	vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	
-	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-	glCompileShader(vertexShader);
-	
-	//CONTROLLO CHE NON CI SIANO ERRORI DURANTE LA COMPILAZIONE DEL VS
-    GLint success;
-    GLchar infoLog[512];
-    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-    
-	if (!success){
-        glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-        std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
-    }
-	
-	//CREO IL FRAGMENT SHADER
-    GLint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-    glCompileShader(fragmentShader);
-    
-	//CONTROLLO CHE NON CI SIANO ERRORI DURANTE LA COMPILAZIONE DEL FS
-    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-    if (!success){
-        glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-        std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
-    }
-	
-	//CREO IL PROGRAM SHADER, CHE SERVE DA TRAMITE DA IL VS E FS
-	GLuint shaderProgram;
-	shaderProgram = glCreateProgram();
-	
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glLinkProgram(shaderProgram);
-	
-	//CONTROLLO CHE NON CI SIANO ERRORI DURANTE LA COMPILAZIONE DEL PS
-	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-    if (!success){
-        glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-        std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
-    }
-	
-	//ELIMINO GLI SHADER, DATO CHE SONO STATI COLLEGATI ALLO SHAREDPROGRAM
-	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);*/
 	
 	Shader shader("basic.vert", "basic.frag");
 	
